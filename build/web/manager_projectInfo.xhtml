@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>学生课程设计项目管理系统</title>
+                <style type="text/css">
+                    .ui-datatable-header {
+                        text-align: right !important;
+                    }
+                </style>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form id="form">  
+                <p:defaultCommand target=":form:projectList:refreshBtn" />
+                <p:layout fullPage="true">
+                    <p:layoutUnit position="north"   closable="true" collapsible="true">   
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:button outcome="manager_welcome"  value="学生信息" disabled="false" ></p:button>
+                                <p:button outcome="manager_projectInfo"  value="项目信息" disabled="true"></p:button>
+                                <p:button outcome="manager_managerInfo"   value="管理员信息" disabled="false"></p:button>  
+                                <p:commandButton action="class_plan"   value="课程设置中心"  ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">    
+                                <p:menuButton value="管理员：#{managedBean.managerName}" >
+                                    <p:menuitem value="登出"  action="#{managedBean.logout()}"  icon="ui-icon-extlink"  />
+                                </p:menuButton>
+                            </f:facet>
+                        </p:toolbar>
+                    </p:layoutUnit>  
+                    <p:growl id="messages" showDetail="true"/> 
+                    <p:dialog id="dig" header="AddProject" widgetVar="addStudentDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                        <h:panelGrid  columns="2" cellpadding="4" > 
+                            <h:outputText value="项目名称*:" />  
+                            <h:inputText value="#{dDManagedBean.pro_name}" style="font-weight:bold"  />
+                            <h:outputText value="项目负责人*:" />  
+                            <p:selectOneMenu value="#{dDManagedBean.pro_headman}" style="font-weight:bold" filter="true"
+                                             filterMatchMode="contains">
+                                <f:selectItem itemLabel="没有选择学生" itemValue=""/>
+                                <f:selectItems value="#{dDManagedBean.students}"  
+                                               var="student"   
+                                               itemLabel="#{student.id} : #{student.name}"  
+                                               itemValue="#{student.id}" 
+                                               />  
+                            </p:selectOneMenu>  
+                            <p:commandButton value="添加项目" action="#{dDManagedBean.addProject()}" ajax="false"/>
+                        </h:panelGrid>  
+                    </p:dialog>
+
+                    <p:dialog id="dig2" header="项目负责人：#{dDManagedBean.selectedProject2}__项目名称：#{managedBean.findProject(dDManagedBean.selectedProject2).name}__的项目进程表" 
+                              widgetVar="projectSchedule" height="400"  position="left">
+                        <h:outputText id="display" value="#{dDManagedBean.projectSchedule}" escape="false" />
+                    </p:dialog>
+
+                    <p:dialog id="dig3" header="#{dDManagedBean.selectedStudent2}#{managedBean.findStudent(dDManagedBean.selectedStudent2).name}__的个人进程表" 
+                              widgetVar="studentSchedule"  height="400"  position="left">
+                        <h:outputText id="display2" value="#{dDManagedBean.studentSchedule}" escape="false"/>
+                    </p:dialog>
+
+                    <p:layoutUnit position="center">
+                        <p:dataTable var="project" value="#{dDManagedBean.projects}" id="projectList" editable="true" editMode="cell" 
+                                     rows="9" paginator="true"
+                                     emptyMessage="No projects found with given criteria" filteredValue="#{dDManagedBean.filteredProjects}">  
+                            <p:ajax event="cellEdit" listener="#{dDManagedBean.onEdit2}" update=":form:messages" />  
+
+                            <f:facet name="header" class=".ui-datatable-header">
+                                <p:outputLabel value="项目信息" style="float:left"/>
+                                <p:commandButton   value="刷新" id="refreshBtn" action="#{dDManagedBean.updateData()}" update="projectList" />
+                                <p:commandButton   value="添加项目" oncomplete="PF('addStudentDialog').show()" />
+                            </f:facet>
+
+                            <p:column headerText="项目负责人" filterBy="#{project.id}#{managedBean.findStudent(project.id).name}" filterMatchMode="contains">  
+                                <h:outputText value="#{project.id}__#{managedBean.findStudent(project.id).name}" />  
+                            </p:column>  
+
+                            <p:column headerText="项目名称" filterBy="#{project.name}" filterMatchMode="contains">  
+                                <p:cellEditor> 
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{project.name}"/>  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <h:inputText value="#{project.name}" style="width:96%"/>  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column> 
+
+
+                            <p:column headerText="项目成绩" style="width:75px">  
+                                <p:cellEditor> 
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{project.totalMark}"/> 
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <h:inputText value="#{project.totalMark}" style="width:96%"/> 
+                                    </f:facet>  
+                                </p:cellEditor> 
+                            </p:column> 
+
+                            <p:column headerText="项目报告文件" style="width:100px">  
+                                <p:commandButton value="下载" ajax="false" onclick="PrimeFaces.monitorDownload();" icon="ui-icon-arrowthick-1-s">
+                                    <f:setPropertyActionListener value="#{project}" target="#{fileDownloadController.selectProject}" />  
+                                    <p:fileDownload value="#{fileDownloadController.manager_projectReport}" />
+                                </p:commandButton>
+                            </p:column>  
+
+                            <p:column headerText="项目进程表" style="width:75px">  
+                                <p:commandButton value="查看" action="#{dDManagedBean.readProjectScheduleFromMysql()}" oncomplete="PF('projectSchedule').show()" update=":form:display,:form:dig2">
+                                    <f:setPropertyActionListener value="#{project.id}" target="#{dDManagedBean.selectedProject2}" />  
+                                </p:commandButton>
+                            </p:column> 
+
+                            <p:column headerText="小组成员信息" style="width:75px">  
+                                <p:commandButton value="查看" action="#{dDManagedBean.lookupStudents()}" update="projectList,:form:messages,:form:sop">
+                                    <f:setPropertyActionListener value="#{project.id}" target="#{dDManagedBean.selectedProject}" />  
+                                    <f:setPropertyActionListener value="#{project.name}" target="#{dDManagedBean.selectedProjectName}" />  
+                                </p:commandButton>
+                            </p:column> 
+
+                            <p:column headerText="删除" style="width:75px">  
+                                <p:commandButton value="删除" action="#{dDManagedBean.removeProject(project.id)}" update="projectList,:form:messages,:form:sop" >
+                                    <f:setPropertyActionListener value="#{project.id}" target="#{dDManagedBean.selectedProject}" /> 
+                                    <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                            </p:column> 
+                        </p:dataTable>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="east" size="40%">
+                        <p:dataTable id="sop" var="student" value="#{dDManagedBean.lookStudents}" editable="true" editMode="cell">  
+                            <p:ajax event="cellEdit" listener="#{dDManagedBean.onCellEdit}" update=":form:messages" />  
+                            <f:facet name="header">
+                                <h:panelGrid  columns="4"  > 
+                                    <h:outputText value="项目负责人:" />
+                                    <h:outputText value="#{dDManagedBean.selectedProject}" />
+                                    <h:outputText value="项目名称：" />
+                                    <h:outputText value="#{dDManagedBean.selectedProjectName}"/>
+                                </h:panelGrid>
+                            </f:facet>                            
+                            <p:column headerText="学号" >  
+                                <h:outputText value="#{student.id}" />  
+                            </p:column>  
+                            <p:column headerText="姓名" >  
+                                <h:outputText value="#{student.name}" />  
+                            </p:column>  
+                            <p:column headerText="个人进程表" style="width:100px" >  
+                                <p:commandButton  value="查看" action="#{dDManagedBean.readStudentScheduleFromMysql()}" oncomplete="PF('studentSchedule').show()" update=":form:display2,:form:dig3" >
+                                    <f:setPropertyActionListener value="#{student.id}" target="#{dDManagedBean.selectedStudent2}" /> 
+                                </p:commandButton>
+                            </p:column> 
+
+
+                            <p:column headerText="个人报告" exportable="false" style="width:75px">  
+                                <p:commandButton  value="编辑"    action="#{editorView.showStudentReportEditDialog3}">
+                                    <f:setPropertyActionListener value="#{student}" target="#{editorView.student}" />
+                                    <p:ajax event="dialogReturn" listener="#{editorView.onReturn()}" update=":form:messages,:form:sop" />
+                                   
+                                </p:commandButton>
+                            </p:column> 
+
+                            <p:column headerText="个人成绩"  style="width:75px">  
+                                <p:cellEditor> 
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{student.totalMark}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{student.totalMark}" style="width:96%"/>  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column> 
+                        </p:dataTable>
+                    </p:layoutUnit>
+                </p:layout>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+            </h:form> 
+        </h:body>
+    </f:view>
+</html>

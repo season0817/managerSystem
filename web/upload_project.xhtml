@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>学生课程设计项目管理系统</title>
+
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form >       
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:button outcome="student_welcome"  value="我的信息" disabled="false"></p:button>
+                        <p:button outcome="student_projectInfo"   value="项目信息" disabled="false"></p:button>
+                    </f:facet>
+                    <f:facet name="right">  
+                        <p:menuButton value="学生：#{managedBean.studentId}" >
+                            <p:menuitem value="登出"  action="#{managedBean.logout}"  icon="ui-icon-extlink"  />
+                        </p:menuButton>
+                    </f:facet>
+                </p:toolbar>                             
+            </h:form>
+            <h:form enctype="multipart/form-data">
+                <center>
+                    <div style="width: 600px">
+                        <h1> 项目报告上传(zip)</h1>
+                        <p:button outcome="student_project" value="返回" style="width: 100px;margin: 30px"></p:button>
+                        <p:fileUpload 
+                            fileUploadListener="#{fileUploadController.projectFileUpload}" 
+                            cancelLabel="取消"
+                            uploadLabel="上传"
+                            label="选择"
+                            mode="advanced"
+                            dragDropSupport="true"
+                            update="messages" 
+                            invalidFileMessage="无效文件格式，请上传zip格式文件"
+                            fileLimit="1" 
+                            allowTypes="/(\.|\/)(zip)$/"  />
+                        <p:growl id="messages" showDetail="true" />
+                    </div>
+                </center>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>

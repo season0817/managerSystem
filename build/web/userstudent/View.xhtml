@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUserstudentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUserstudentLabel_id}"/>
+                    <h:outputText value="#{userstudentController.selected.id}" title="#{bundle.ViewUserstudentTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewUserstudentLabel_password}"/>
+                    <h:outputText value="#{userstudentController.selected.password}" title="#{bundle.ViewUserstudentTitle_password}"/>
+                    <h:outputText value="#{bundle.ViewUserstudentLabel_name}"/>
+                    <h:outputText value="#{userstudentController.selected.name}" title="#{bundle.ViewUserstudentTitle_name}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userstudentController.destroyAndView}" value="#{bundle.ViewUserstudentDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUserstudentEditLink}"/>
+                <br />
+                <h:commandLink action="#{userstudentController.prepareCreate}" value="#{bundle.ViewUserstudentCreateLink}" />
+                <br />
+                <h:commandLink action="#{userstudentController.prepareList}" value="#{bundle.ViewUserstudentShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUserstudentIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

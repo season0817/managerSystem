@@ -1,0 +1,198 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>学生课程设计项目管理系统</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form id="form">       
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:button outcome="student_welcome"  value="我的信息" disabled="false"></p:button>
+                        <p:button outcome="student_projectInfo"   value="项目信息" disabled="false"></p:button>   
+                        <p:button outcome="solutions_student" value="解决方案" disabled="false"></p:button>
+                    </f:facet>
+                    <f:facet name="right">  
+                        <p:menuButton value="学生：#{managedBean.studentId}" >
+                            <p:menuitem value="登出"  action="#{managedBean.logout}"  icon="ui-icon-extlink"  />
+                        </p:menuButton>
+                    </f:facet>
+                </p:toolbar>      
+                <center>
+                    <h1 style="text-align: center">我的信息</h1>
+                    <p:growl id="growl" showDetail="true" />
+                    <table border="2"  cellpadding="10" >
+                        <tbody>
+                            <tr>
+                                <td><p:outputLabel value="学号"></p:outputLabel></td>
+                        <td><p:outputLabel value="#{managedBean.studentId}"></p:outputLabel></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel value="姓名"></p:outputLabel></td>
+                        <td><p:outputLabel value="#{managedBean.studentName}"></p:outputLabel></td>
+                        </tr>
+              <!--
+                        <tr>
+                            <td><p:outputLabel value="参与项目"></p:outputLabel></td>
+                        <td><p:commandLink value="#{managedBean.project.name}" oncomplete="PF('dialog4').show()" type="button"/></td>
+                        </tr>
+              -->
+              <!--
+                        <tr>
+                            <td><p:outputLabel value="参与项目的负责人"></p:outputLabel></td>
+                        <td><p:outputLabel value="#{managedBean.project.headman}__#{managedBean.findStudent(managedBean.project.headman).name}"></p:outputLabel></td>
+                        </tr>
+               -->
+                 <!--
+                        <tr>
+                            <td><p:outputLabel value="小组成员信息"></p:outputLabel></td>
+                        <td><p:commandButton value="查看" oncomplete="PF('ProjectStudentsDialog').show()">
+                        </p:commandButton></td>
+                        </tr>
+                    -->
+                    <!--
+                        <tr>
+                            <td><p:outputLabel value="个人报告"></p:outputLabel></td>
+                        <td><p:commandButton  value="编辑"    action="#{editorView.showStudentReportEditDialog}">
+                            <p:ajax event="dialogReturn" listener="#{editorView.onReturn}" update="growl" />
+                        </p:commandButton></td>
+                        </tr>
+                    -->
+                      <!--
+                        <tr>
+                            <td><p:outputLabel value="项目报告"></p:outputLabel></td>
+                        <td><p:commandButton  value="编辑"    action="#{editorView.showProjectReportEditDialog}" update="growl">
+                            <p:ajax event="dialogReturn" listener="#{editorView.onReturn2}" update="growl" />
+                        </p:commandButton>
+                        <p:button value="上传项目报告文件"  outcome="upload_project"/>  
+                        <p:commandButton value="下载项目报告文件" ajax="false" onclick="PrimeFaces.monitorDownload();" icon="ui-icon-arrowthick-1-s">
+                            <p:fileDownload value="#{fileDownloadController.projectReport}" />
+                        </p:commandButton></td>
+                        </tr>
+                        -->
+                        <!--
+                        <tr>
+                            <td><p:outputLabel value="学习进程"></p:outputLabel></td>
+                        <td>
+                        <p:commandButton  value="前往" action="#{scheduleView.newStudentSchedule}" oncomplete="PF('scheduleDialog').show()" update=":level1form:dialog" >
+                            <f:setPropertyActionListener value="#{managedBean.student}" target="#{scheduleView.student}" /> 
+                        </p:commandButton></td>
+                        </tr>
+                            -->
+                             <!--
+                        <tr>
+                            <td><p:outputLabel value="项目进程"></p:outputLabel></td>
+                        <td>
+                        <p:commandButton  value="前往" action="#{scheduleView.newProjectSchedule}"  update=":level1form:dialog2" >
+                            <f:setPropertyActionListener value="#{managedBean.student.projectID}" target="#{scheduleView.project}" /> 
+                        </p:commandButton></td>
+                        </tr>
+                                 -->
+                        </tbody>
+                    </table>
+                </center>
+            </h:form>
+            <h:form id="level1form">
+                  <!--
+                <p:dialog id="dialog"  widgetVar="scheduleDialog" header="#{scheduleView.student.id}__#{scheduleView.student.name}的个人进度表" modal="true">
+                    <center>
+                        <h:panelGrid columns="1">
+                            <p:schedule id="schedule"   value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+8"
+                                        leftHeaderTemplate="prev,next" rightHeaderTemplate="today"  style="width: 1000px"
+                                        resizable="false" draggable="false"  view="basicWeek" aspectRatio="6"  initialDate="#{scheduleView.startDate}" >
+                                <p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="messages"/>
+                                <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}"  update="messages"/>
+                            </p:schedule>
+                            <p:messages id="messages" showDetail="true"  closable="true" showIcon="false"/>
+                     -->
+                            <!--下面的按钮隐藏了-->
+                            <!--
+                            <p:commandButton id="showLevel2btn" actionListener="#{scheduleView.showDig()}" value="showDig"  style="display: none" >
+                                <p:ajax event="dialogReturn" listener="#{scheduleView.onStudentReturn}" update="messages" oncomplete="PF('myschedule').update()"/>
+                            </p:commandButton>
+                            -->
+                            <!--下面的按钮隐藏了-->
+                            <!--
+                            <p:commandButton id="showEndDateBtn" actionListener="#{scheduleView.showDialogEndDate()}" value="showDialogEndDate"  style="display: none" >
+                                <p:ajax event="dialogReturn" listener="#{scheduleView.onStudentReturn}" update="messages" oncomplete="PF('myschedule').update()"/>
+                            </p:commandButton>
+                        </h:panelGrid>
+                    </center>
+                           
+                </p:dialog>
+                  -->
+                  <!--
+                <p:dialog id="dialog2"  widgetVar="scheduleDialog2" header="负责人：#{scheduleView.project.id}__项目：#{scheduleView.project.name}__的项目进度表" modal="true">
+                    <center>
+                        <h:panelGrid columns="1">
+                            <p:schedule id="schedule2"   value="#{scheduleView.eventModel}" widgetVar="myschedule2" timeZone="GMT+8"
+                                        leftHeaderTemplate="prev,next" rightHeaderTemplate="today"  style="width: 600px"
+                                        resizable="false" draggable="false"  view="basicWeek" aspectRatio="6"  initialDate="#{scheduleView.startDate}" >
+                                <p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect2}" update="messages2"/>
+                                <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}"  update="messages2"/>
+                            </p:schedule>
+                            <p:messages id="messages2" showDetail="true"  closable="true" showIcon="false"/>
+                    -->
+                            <!--下面的按钮隐藏了-->
+                               <!--
+                            <p:commandButton id="showLevel2btn2" actionListener="#{scheduleView.showDig2()}" value="hideDialog"  style="display: none" >
+                                <p:ajax event="dialogReturn" listener="#{scheduleView.onProjectReturn}" update="messages2" oncomplete="PF('myschedule2').update()"/>
+                            </p:commandButton>
+                               -->
+                            <!--下面的按钮隐藏了-->
+                             <!--
+                            <p:commandButton id="showEndDateBtn2" actionListener="#{scheduleView.showDialogEndDate2()}" value="showDialogEndDate"  style="display: none" >
+                                <p:ajax event="dialogReturn" listener="#{scheduleView.onProjectReturn}" update="messages2" oncomplete="PF('myschedule2').update()"/>
+                            </p:commandButton>
+                        </h:panelGrid>
+                    </center>
+                </p:dialog>
+                             -->
+                              <!--
+                <p:dialog widgetVar="ProjectStudentsDialog" header="小组成员信息">
+                    <p:dataTable value="#{newJSFManagedBean.group}" var="item" style="width: 600px" >
+                        <f:facet name="header">
+                            <p:outputLabel value="参与项目：#{newJSFManagedBean.user_project.name}____项目负责人：#{newJSFManagedBean.user_project.headman}"/>
+                        </f:facet>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Name"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="TotalMark"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalMark}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
+                                -->
+                                <!--
+                <p:dialog header="编辑项目名称" widgetVar="dialog4">
+                    <p:inputText value="#{managedBean.project.name}"/>
+                    <p:commandButton value="修改" actionListener="#{managedBean.changeProjectName()}"  ajax="false"/>
+                </p:dialog>
+                                  -->
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
+

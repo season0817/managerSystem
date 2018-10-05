@@ -1,0 +1,93 @@
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:22.0pt;font-family:黑体">北京邮电大学软件学院</span></b><span lang="EN-US"><u1:p></u1:p><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><u><span times="" new="" "=""><span lang="EN-US" style="font-size:22.0pt;font-family:黑体">2016-2017</span></span></u></b><b><u><span times="" new="" ",serif;="" "=""><span lang="EN-US" style="font-size:22.0pt">&nbsp;</span></span></u></b><b><u><span times="" new="" "=""><span lang="EN-US" style="font-size:22.0pt;font-family:黑体">&nbsp;</span></span></u></b><b><span times="" new="" "=""><span style="font-size:22.0pt;font-family:黑体">学年第<u><span lang="EN-US">&nbsp;</span>二<span lang="EN-US">&nbsp;</span></u>学期项目总结报告</span></span></b><span lang="EN-US"><u1:p></u1:p><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">（每个项目小组一份）</span></b><span lang="EN-US"><u1:p></u1:p><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span lang="EN-US" style="font-size:15.0pt">&nbsp;</span></b><span lang="EN-US"><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">课程名称：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<u1:p></u1:p><u3:p></u3:p>&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">项目名称：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<u1:p></u1:p><u3:p></u3:p>&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">项目完成人：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<u1:p></u1:p><u3:p></u3:p>&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">姓名：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><b><span style="font-size:15.0pt;font-family:黑体"><u1:p></u1:p>学号：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">姓名：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><b><span style="font-size:15.0pt;font-family:黑体"><u1:p></u1:p>学号：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">姓名：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><b><span style="font-size:15.0pt;font-family:黑体"><u1:p></u1:p>学号：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">姓名：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><b><span style="font-size:15.0pt;font-family:黑体"><u1:p></u1:p>学号：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">姓名：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><b><span style="font-size:15.0pt;font-family:黑体"><u1:p></u1:p>学号：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center"><b><span style="font-size:15.0pt;font-family:黑体">姓名：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><b><span style="font-size:15.0pt;font-family:黑体"><u1:p></u1:p>学号：</span></b><b><u><span lang="EN-US" style="font-size:14.0pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></u></b><span lang="EN-US"><u1:p></u1:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:15.0pt">&nbsp;</span></b><span lang="EN-US"><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="right" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:right"><b><span style="font-size:15.0pt;font-family:黑体">日期：<span lang="EN-US">&nbsp;</span></span></b><b><span lang="EN-US" style="font-size:15.0pt">&nbsp;</span></b><b><span style="font-size:15.0pt;font-family:黑体">年</span></b><b><span lang="EN-US" style="font-size:15.0pt">&nbsp;&nbsp;</span></b><b><span style="font-size:15.0pt;
+font-family:黑体">月</span></b><b><span lang="EN-US" style="font-size:15.0pt">&nbsp;&nbsp;</span></b><b><span style="font-size:15.0pt;font-family:黑体">日</span></b><span lang="EN-US"><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<span lang="EN-US" style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN;mso-bidi-language:AR-SA"><br clear="all" style="page-break-before:always" mce_style="page-break-before:always">
+</span>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:15.0pt"><b><span style="font-size:14.0pt">一<span lang="EN-US">&nbsp;.&nbsp;</span>项目目的和要求（说明通过本项目希望达到的目的和要求）</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<u3:p></u3:p><u4:p></u4:p><u5:p></u5:p></span><span lang="EN-US"><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<u3:p></u3:p><u4:p></u4:p><u5:p></u5:p></span><span lang="EN-US"><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span style="font-size:14.0pt">二<span lang="EN-US">&nbsp;.</span>项目开发环境（说明本项目需要的环境）</span></b><span lang="EN-US"><u1:p></u1:p><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span style="font-size:14.0pt">三<span lang="EN-US">&nbsp;.</span>项目内容（说明本项目的内容，如：问题分析、设计方案、算法、设计图等）</span></b><span lang="EN-US"><u1:p></u1:p><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span style="font-size:14.0pt">四<span lang="EN-US">&nbsp;.</span>项目结果及分析</span></b><span lang="EN-US"><u1:p></u1:p><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<u3:p></u3:p><u4:p></u4:p><u5:p></u5:p></span><span lang="EN-US"><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span style="font-size:14.0pt">五<span lang="EN-US">&nbsp;.</span>项目人员、进度安排及完成过程</span></b><span lang="EN-US"><u1:p></u1:p><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span style="font-size:14.0pt">六<span lang="EN-US">&nbsp;.&nbsp;</span>项目心得及体会</span></b><span lang="EN-US"><u1:p></u1:p><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span lang="EN-US" style="font-size:14.0pt">&nbsp;</span></b><span lang="EN-US"><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u5:p></u5:p><u6:p></u6:p><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span style="font-size:14.0pt">七<span lang="EN-US">&nbsp;.&nbsp;</span>附录（附上项目其他文档，具体内容根据项目要求确定<u5:p></u5:p>）</span></b><span lang="EN-US"><u6:p></u6:p><o:p></o:p></span></p>
+
+<span lang="EN-US" style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-ansi-language:EN-US;mso-fareast-language:ZH-CN;mso-bidi-language:AR-SA"><br clear="all" style="mso-special-character:line-break;page-break-before:always" mce_style="page-break-before:always"></span>

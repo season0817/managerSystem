@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>学生课程设计项目管理系统</title>
+                <style type="text/css">
+                    .ui-datatable-header {
+                        text-align: right !important;
+                    }
+                </style>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form id="form">  
+                <p:defaultCommand target=":form:solutionList:refreshBtn" />
+               <p:toolbar >
+                    <f:facet name="left">
+                        <p:commandButton action="manager_welcome"  value="学生信息" disabled="false" ajax="false"/>
+                        <p:commandButton action="manager_projectInfo"  value="项目信息" disabled="false" ajax="false"/>
+                        <p:commandButton action="manager_managerInfo"   value="管理员信息" disabled="false" ajax="false"/>
+                        <p:commandButton action="class_plan"   value="课程设置中心"  ajax="false"/>
+                        <p:commandButton action="solutions_manager"   value="解决方案"  ajax="false"/>
+                    </f:facet>
+                    <f:facet name="right">  
+                        <p:menuButton value="管理员：#{managedBean.managerName}" >
+                            <p:menuitem value="登出"  action="#{managedBean.logout}"  icon="ui-icon-extlink"  />
+                        </p:menuButton>
+                    </f:facet>
+                </p:toolbar>   
+                <p:growl id="growl" showDetail="true"/> 
+                <p:dialog id="dig" header="AddSolution" widgetVar="addSolutionDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                    <h:panelGrid  columns="2" cellpadding="4" >  
+                        <h:outputText value="问题*:" />  
+                        <h:inputText value="#{solutionManagedBean.quesiton_addString}" style="font-weight:bold" />  
+                        <h:outputText value="解决方案*:" />  
+                        <h:inputTextarea value="#{solutionManagedBean.solution_addString}" style="font-weight:bold" />  
+                        <p:commandButton value="add solution" action="#{solutionManagedBean.addSolution}"  ajax="false" update="solutionList"/>
+                    </h:panelGrid>  
+                </p:dialog>
+
+
+
+
+                <h1 style="text-align: center">解决方案</h1>
+                <p:dataTable  var="solution" value="#{solutionManagedBean.solutions}" id="solutionList" editable="true" widgetVar="solutionsTable" 
+                              rows="9" paginator="true" 
+                              emptyMessage="No solutions found with given criteria"  filteredValue="#{solutionManagedBean.filteredSolutions}"
+                              >  
+                    <p:ajax event="rowEdit" listener="#{solutionManagedBean.onEdit}" update=":form:growl"  />
+                    <p:ajax event="rowEditCancel" listener="#{solutionManagedBean.onCancel}" update=":form:growl" />  
+                    <f:facet name="header">
+                        <p:commandButton   value="刷新" id="refreshBtn" action="#{solutionManagedBean.updateData}" update=":form:solutionList" />
+                        <p:commandButton   value="添加解决方案" oncomplete="PF('addSolutionDialog').show()" />
+                    </f:facet>
+
+                    <p:column headerText="问题" filterBy="#{solution.question}" filterMatchMode="contains" >  
+                        <h:outputText value="#{solution.question}" />  
+                    </p:column>  
+
+                    <p:column headerText="解决方案" filterBy="#{solution.solution}" filterMatchMode="contains" >  
+                        <h:outputText value="#{solution.solution}" />  
+                    </p:column>  
+                    
+                    <p:column headerText="删除" style="width:75px" exportable="false">  
+                        <p:commandButton value="删除" action="#{solutionManagedBean.removeSolution(solution)}" update=":form:solutionList"/>
+                    </p:column> 
+
+                </p:dataTable> 
+            </h:form>
+        </h:body>
+    </f:view>
+
+</html>
+
+

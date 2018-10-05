@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>实验课学生管理系统</title>
+                <style type="text/css">
+                    .ui-datatable-header {
+                        text-align: right !important;
+                    }
+                </style>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form id="form">
+                <p:growl id="messages" showDetail="true" />
+                <p:defaultCommand target="btn" /> 
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton action="student_info"  value="我的信息" disabled="false" ajax="false"/>
+                        <p:commandButton  id="btn" action="student_projectInfo"   value="项目信息" disabled="false"/>
+                        <p:button outcome="solutions_student" value="解决方案" disabled="false"></p:button>
+                    </f:facet>
+                    <f:facet name="right">  
+                        <p:menuButton value="学生：#{managedBean.studentId}" >
+                            <p:menuitem value="登出"  action="#{managedBean.logout}"  icon="ui-icon-extlink"  />
+                        </p:menuButton>
+                    </f:facet>
+                </p:toolbar>                        
+
+
+                <h1 style="text-align: center">项目信息</h1>
+                <f:view>
+                    <center>
+                        <p:dataTable id="project_id" 
+                                     value="#{jSFManagedBean.project}" 
+                                     var="item" 
+                                     rows="10" paginator="true"
+                                     emptyMessage="No projects found with given criteria" filteredValue="#{jSFManagedBean.filteredProjects}"
+                                     style="width: 1000px">    
+                            <f:facet name="header" class=".ui-datatable-header">
+                                <p:commandButton   value="退出项目" oncomplete="PF('removeProjectDialog').show()"/>
+                                <p:commandButton   value="创建项目" oncomplete="PF('addProjectDialog').show()"/>
+                            </f:facet>
+                            <p:column filterBy="#{item.id}" filterMatchMode="contains">
+                                <f:facet name="header">
+                                    <h:outputText value="项目ID"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                            <p:column filterBy="#{item.name}" filterMatchMode="contains">
+                                <f:facet name="header">
+                                    <h:outputText value="项目名称"/>
+                                </f:facet>
+                                <h:outputText value="#{item.name}"/>
+                            </p:column>
+                            <p:column filterBy="#{item.headman}}" filterMatchMode="contains">
+                                <f:facet name="header">
+                                    <h:outputText value="项目负责人ID"/>
+                                </f:facet>
+                                <h:outputText value="#{item.headman}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="项目负责人"/>
+                                </f:facet>
+                                <h:outputText value="#{loginStudentBean.studentName(item.headman)}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="项目所属课程ID"/>
+                                </f:facet>
+                                <h:outputText value="#{item.getCourseID().getId()}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="项目所属课程"/>
+                                </f:facet>
+                                <h:outputText value="#{item.getCourseID().getName()}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="项目成绩"/>
+                                </f:facet>
+                                <h:outputText value="#{item.totalMark}"/>
+                            </p:column>
+                            <p:column style="width:75px">
+                                <f:facet name="header">
+                                    <h:outputText value="小组成员信息"/>
+                                </f:facet>
+                                <p:commandButton value="查看" action="#{jSFManagedBean.lookStudents}" oncomplete="PF('StudentsDialog').show()" update=":form2:dialog2">
+                                    <f:setPropertyActionListener value="#{item.id}" target="#{jSFManagedBean.rowProject}" /> 
+                                </p:commandButton>
+                            </p:column>
+                            <p:column  style="width:75px">
+                                <f:facet name="header">
+                                    <h:outputText value="操作" />                                        
+                                </f:facet>                                    
+                                <p:commandButton value="参加" action="#{jSFManagedBean.joinProject}" ajax="false" >
+                                    <f:setPropertyActionListener value="#{item.id}" target="#{jSFManagedBean.rowProject}" />  
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>     
+                    </center>
+                </f:view>
+            </h:form>
+            <h:form id="form2">
+                <p:dialog header="创建项目" widgetVar="addProjectDialog" modal="true" showEffect="modal"  resizable="false">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="项目负责人ID"></h:outputText> 
+                        <h:outputText value="#{jSFManagedBean.currentProject}" />
+                        <h:outputText value="项目小组ID"></h:outputText> 
+                        <h:inputText value="#{jSFManagedBean.newProjectId}" ></h:inputText>
+                        <h:outputText value="项目所属课程ID"></h:outputText> 
+                        <h:inputText value="#{jSFManagedBean.newCourseId}" ></h:inputText>
+                        <h:outputText value="项目名称"></h:outputText> 
+                        <h:inputText value="#{jSFManagedBean.name}" ></h:inputText>                              
+                    </p:panelGrid>
+                    <p:commandButton value="创建项目" action="#{jSFManagedBean.submitProject}" ajax="false"  ></p:commandButton>
+                </p:dialog>
+                <p:dialog header="退出项目" widgetVar="removeProjectDialog" modal="true" showEffect="modal"  resizable="false">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="项目负责人ID"></h:outputText> 
+                        <h:outputText value="#{jSFManagedBean.currentProject}" />
+                        <h:outputText value="项目小组ID"></h:outputText> 
+                        <h:inputText value="#{jSFManagedBean.oldProjectId}" ></h:inputText>
+                        <h:outputText value="项目所属课程ID"></h:outputText> 
+                        <h:inputText value="#{jSFManagedBean.oldCourseId}" ></h:inputText>                     
+                    </p:panelGrid>
+                    <p:commandButton value="退出我的项目" action="#{jSFManagedBean.removeProject()}" update=":form:project_id,:form:messages">
+                        <p:confirm header="注意" message="如果您是项目负责人，那么您的项目会被删除。如果您不是，那么只会退出这个项目。您确定继续吗？" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </p:dialog>
+                <p:dialog id="dialog2" header="小组成员信息" widgetVar="StudentsDialog" showEffect="modal" modal="true">
+                    <p:dataTable value="#{jSFManagedBean.student}" var="item" style="width: 600px" >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="学号"/>
+                            </f:facet>
+                            <h:outputText value="#{item.getStudentPK().getId()}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="姓名"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="成绩"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalMark}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" width="400px">
+                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
+

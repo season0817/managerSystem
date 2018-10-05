@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>学号:#{editorViewThread.student.id}__姓名:#{editorViewThread.student.name}__的个人报告</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <center>
+                <h:form id="form">      
+                    <h:panelGrid columns="1">
+                        <p:growl id="growl" showDetail="true"/>
+                        <p:editor id="editor" widgetVar="editorWidget" value="#{editorViewThread.text}" width="800"  height="400" 
+                                  >
+                        </p:editor>
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:commandButton value="新建" action="#{editorViewThread.readStudentReportTemplate()}" update="editor"  />
+                                <p:commandButton value="最新一次的更新" action="#{editorViewThread.readStudentReportFromMysql()}"  update="editor"/>
+                                <p:commandButton value="清空" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+                                <p:commandButton id="saveBtn" value="保存草稿" actionListener="#{editorViewThread.valueChange()}" update="growl"/>
+                                
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton id="imageLink" value="评分" type="button" />
+                                <p:commandButton value="提交" action="#{editorViewThread.saveStudentReportToMysql()}" update="editor"  icon="ui-icon-disk"/>
+                            </f:facet>
+                        </p:toolbar>
+                        <p:outputLabel value="在线编辑之后建议先保存草稿再使用评分" />
+                    </h:panelGrid>
+                    <p:overlayPanel id="imagePanel" for="imageLink" hideEffect="fade" widgetVar="panel" at="top" my="bottom">
+                        <p:selectOneListbox id="listbox" value="#{editorViewThread.chooseGradeName}" style="width: 100%"  >
+                            <f:selectItems value="#{editorViewThread.grades}" var="grade" 
+                                           itemLabel="#{grade.name}" itemValue="#{grade.name}"/>  
+                            <p:ajax event="valueChange" listener="#{editorViewThread.onSelected()}" update="form:growl,form:editor,form:listbox"  oncomplete="PF('panel').hide()"/>
+                        </p:selectOneListbox>
+                    </p:overlayPanel>
+
+                </h:form> 
+            </center>
+        </h:body>
+    </f:view>
+</html>
+

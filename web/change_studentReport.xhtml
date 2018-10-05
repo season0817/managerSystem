@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>正在修改个人报告模板</title>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <center>
+            <h:form id="form">  
+                <h:panelGrid columns="1">
+                    <p:editor id="editor" widgetVar="editorWidget" value="#{classPlanView.text}" width="800"  height="400"  />
+                    <p:toolbar>
+                        <f:facet name="left">
+                            <p:commandButton value="新建" action="#{classPlanView.setText(null)}" update="editor"  />
+                            <p:commandButton value="最新一次的更新" action="#{classPlanView.readStudentReportTemplate()}"  update="editor"/>
+                            <p:commandButton value="清空" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+                        </f:facet>
+                        <f:facet name="right">
+                            <p:commandButton value="提交" action="#{classPlanView.saveAsStudentReportTemplate()}" update="editor"  icon="ui-icon-disk"/>
+                        </f:facet>
+                    </p:toolbar>
+                </h:panelGrid>
+            </h:form> 
+        </center>
+    </h:body>
+</html>

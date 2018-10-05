@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>学生课程设计项目管理系统</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <center>
+                <h:form id="form">  
+                    <h:panelGrid columns="5" cellpadding="4">
+                        <p:outputLabel value="学号"/>
+                        <p:outputLabel value="#{editorView.student.id}"/>
+                        <p:outputLabel value="姓名"/>
+                        <p:outputLabel value="#{editorView.student.name}"/>
+                        <p:outputLabel value="的个人报告"/>
+                    </h:panelGrid>
+                    <p:editor id="editor" widgetVar="editorWidget" value="#{editorView.text}" width="800"  height="600"  />
+                    <h:panelGrid columns="4" style="margin-top: 10px">
+                        <p:commandButton value="新建" action="#{editorView.readTemplate()}" update="editor"  />
+                        <p:commandButton value="最新一次的更新" action="#{editorView.readFromMysql()}"  update="editor"/>
+                        <p:commandButton value="提交" action="#{editorView.saveToMysql()}" update="editor"  icon="ui-icon-disk"/>
+                        <p:commandButton value="清空" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+                    </h:panelGrid>
+                </h:form> 
+            </center>
+        </h:body>
+    </f:view>
+</html>
+
+

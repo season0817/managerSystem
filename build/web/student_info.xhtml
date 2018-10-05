@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>学生课程设计项目管理系统</title>
+            </f:facet>
+            <style type="text/css">  
+                table {  
+                    border-collapse: collapse;  
+                    width: 100%;  
+                }  
+                th, td {  
+                    text-align: left;  
+                    padding: 8px;  
+                }  
+
+                tr:nth-child(even){background-color: #f2f2f2}  
+                th {  
+                    background-color: #6CA6CD;  
+                    color: white;  
+                }  
+            </style>
+        </h:head>
+        <h:body>
+            <h:form id="form">  
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:button outcome="student_info"  value="我的信息" disabled="false"></p:button>
+                        <p:button outcome="student_projectInfo"   value="项目信息" disabled="false"></p:button>   
+                        <p:button outcome="solutions_student" value="解决方案" disabled="false"></p:button>
+                    </f:facet>
+                    <f:facet name="right">  
+                        <p:menuButton value="学生：#{loginStudentBean.studentId}" >
+                            <p:menuitem value="登出"  action="#{loginStudentBean.logout}"  icon="ui-icon-extlink"  />
+                        </p:menuButton>
+                    </f:facet>
+                </p:toolbar>   
+                <h1 style="text-align: center">我的所有实验项目课程</h1>
+                <p:outputLabel value="请输入项目ID与课程ID查看详细信息 "></p:outputLabel>
+                <p:outputLabel value="项目ID"></p:outputLabel>
+                 <p:inputText value="#{managedBean.projectId}"></p:inputText>
+                 <p:outputLabel value="课程ID"></p:outputLabel>
+                 <p:inputText value="#{managedBean.courseId}"></p:inputText>
+                  <p:commandButton class="button button1" value="提交" action="student_project.xhtml" ></p:commandButton> 
+            </h:form>
+            <h:dataTable  value="#{loginStudentBean.students}" var="s"   class="big"> 
+                <h:column>  
+                    <f:facet name="header">项目ID</f:facet>  
+                    <h:outputText value="#{s.getStudentPK().getProjectID()}"/>  
+                </h:column>
+                <h:column>  
+                    <f:facet name="header">项目小组名</f:facet>  
+                    <h:outputText value="#{s.getProject().getName()}"/>  
+                </h:column>
+                 <h:column>  
+                    <f:facet name="header">课程ID</f:facet>  
+                    <h:outputText value="#{s.getStudentPK().getCourseID()}"/>  
+                </h:column>
+                 <h:column>  
+                    <f:facet name="header">课程名</f:facet>  
+                    <h:outputText value="#{s.getCourse().getName()}"/>  
+                </h:column>
+                <h:column>  
+                    <f:facet name="header">项目负责人ID</f:facet>  
+                    <h:outputText value="#{s.getProject().getHeadman()}"/>  
+                </h:column>
+                <h:column>  
+                    <f:facet name="header">项目负责人</f:facet>  
+                    <h:outputText value="#{loginStudentBean.studentName(s.getProject().getHeadman())}"/>  
+                </h:column>
+                <h:column>  
+                    <f:facet name="header">项目TotalMark</f:facet>  
+                    <h:outputText value="#{s.getProject().getTotalMark()}"/>  
+                </h:column>
+            </h:dataTable>
+        </h:body>
+    </f:view>
+</html>
+

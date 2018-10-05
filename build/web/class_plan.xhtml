@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>课程设置中心</title>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <center>
+            <h:form id="form"  enctype="multipart/form-data">  
+                <p:defaultCommand target=":form:btn4"/>
+                <center>
+                    <p:toolbar>
+                        <f:facet name="left">
+                            <p:commandButton  id="btn1" action="manager_welcome"  value="学生信息" disabled="false" ajax="false"/>
+                            <!--
+                            <p:commandButton id="btn2" action="manager_projectInfo"  value="项目信息" disabled="false" ajax="false"/>
+                            -->
+                            <p:commandButton action="manager_managerInfo"   value="管理员信息" disabled="false" ajax="false"/>
+                            <p:commandButton  id="btn4" action="class_plan"   value="课程设置中心" disabled="true" ajax="false"/>
+                        </f:facet>
+                        <f:facet name="right">  
+                            <p:menuButton value="管理员：#{loginStudentBean.managerId}" >
+                                <p:menuitem value="登出"  action="#{loginStudentBean.logout()}"  icon="ui-icon-extlink"  />
+                            </p:menuButton>
+                        </f:facet>
+                    </p:toolbar>
+                    <h:panelGrid columns="1" style="width: 800px">
+                        <h1 style="text-align: center">课程设置中心</h1>
+                        <p:growl id="growl0" showDetail="true" />
+                        <p:dataTable id="courseTable" value="#{loginStudentBean.courses}" var="c" editable="true" 
+                                     widgetVar="courseTableVar"
+                                    >     
+                            <p:column headerText="课程ID" style="width:40px" > 
+                                <center><h:outputText value="#{c.id}"/></center>
+                            </p:column>
+                             <p:column headerText="课程名" style="width:40px" > 
+                                <center><h:outputText value="#{c.name}"/></center>
+                            </p:column>
+                            <p:column headerText="学年" style="width:40px" > 
+                                <center><h:outputText value="#{c.year}"/></center>
+                            </p:column>
+                            <p:column headerText="授课老师ID" style="width:40px" > 
+                                <center><h:outputText value="#{c.getManagerID().getId()}"/></center>
+                            </p:column>
+                             <p:column headerText="课程计划ID" style="width:40px" > 
+                                <center><h:outputText value="#{c.getClassplanID().getId()}"/></center>
+                            </p:column>
+                            
+                            <p:column headerText="课程安排" style="width:40px" > 
+                            <p:commandButton  value="前往" action="#{scheduleView.newCourseSchedule}" oncomplete="PF('scheduleDialog').show()" update=":level1form:dialog" >
+                                        <f:setPropertyActionListener value="#{c}" target="#{scheduleView.course}" /> 
+                                    </p:commandButton>
+                                         </p:column>
+                        </p:dataTable>
+                        <p:growl id="growl" showDetail="true" />
+                        <p:dataTable id="classPlanTable" value="#{classPlanView.classPlans}" var="item" editable="true" 
+                                     widgetVar="classPlanTableVar"
+                                     >
+                            <p:ajax event="rowEdit" listener="#{classPlanView.onEdit}" update=":form:messages" />  
+                            <p:ajax event="rowEditCancel" listener="#{classPlanView.onCancel}"  update=":form:messages"/>  
+
+                            <p:column headerText="ID" style="width:40px" > 
+                                <center><h:outputText value="#{item.id}"/></center>
+                            </p:column>
+                            <p:column headerText="项目开始时间" >
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <center><h:outputText value="#{item.startDate}"><f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+8"/></h:outputText></center>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:calendar  value="#{item.startDate}" pattern="yyyy-MM-dd" mask="true" required="true" requiredMessage="项目开始时间不能为空"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="项目结束时间" >
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <center><h:outputText value="#{item.endDate}"><f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+8"/></h:outputText></center>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:calendar  value="#{item.endDate}" pattern="yyyy-MM-dd" mask="true" required="true" requiredMessage="项目结束时间不能为空" />
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="项目小组限制人数" >
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <center><h:outputText value="#{item.projectLimitNumber}"/></center>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <center><p:inputText value="#{item.projectLimitNumber}"  required="true" requiredMessage="必须输入项目小组限制人数" style="width:100% "/></center>
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column  headerText="编辑" style="width:40px">
+                                <p:rowEditor /> 
+                            </p:column>
+                        </p:dataTable>
+                        <p:messages id="messages"  autoUpdate="true" />
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:commandButton value="修改个人报告模板" actionListener="#{classPlanView.editStudentReport}">
+                                    <p:confirm header="注意" message="修改个人报告模板，有可能造成排版问题，你确定要继续吗？" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:commandButton value="修改个人进度表模板" actionListener="#{classPlanView.editScheduleStudent()}">
+                                    <p:confirm header="注意" message="修改个人进度模板，有可能造成排版问题，你确定要继续吗？" icon="ui-icon-alert" />
+                                </p:commandButton>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton value="修改项目报告模板" actionListener="#{classPlanView.editProjectReport}">
+                                    <p:confirm header="注意" message="修改项目报告模板，有可能造成排版问题，你确定要继续吗？" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:commandButton value="修改项目进度表模板" actionListener="#{classPlanView.editScheduleProject()}">
+                                    <p:confirm header="注意" message="修改项目进度模板，有可能造成排版问题，你确定要继续吗？" icon="ui-icon-alert" />
+                                </p:commandButton>
+                            </f:facet>
+                        </p:toolbar>
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:commandButton value="上传更新学生信息" actionListener="#{classPlanView.editStudentsData()}">
+                                    <p:confirm header="注意" message="上传学生信息会更改服务器上储存的学生信息表，并自动重置所有学生和项目信息，请您确认上传的xlsx文件符合要求，你确定要继续吗？" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:commandButton value="更改" id="showOP" type="button"> 
+                                </p:commandButton>
+                            </f:facet>
+                        </p:toolbar>
+                    </h:panelGrid>
+                </center>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" width="400">
+                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+                <p:overlayPanel widgetVar="OP" for="showOP" style="width: 900px">
+                    <p:toolbar>
+                        <f:facet name="left">
+                            <p:commandButton type="button" value="隐藏这个窗口" onclick="PF('OP').hide()" />
+                        </f:facet>
+                        <f:facet name="right">
+                            <p:commandButton type="button" value="添加评语" onclick="PF('dialog').show()" />
+                        </f:facet>
+                    </p:toolbar>
+                    <p:dataTable id="gradeList" value="#{classPlanView.grades}" var="g" editable="true" >
+                        <p:ajax event="rowEdit" listener="#{classPlanView.onGradesEdit}" update=":form:messages" />  
+                        <p:ajax event="rowEditCancel" listener="#{classPlanView.onCancel}"  update=":form:messages"/>  
+                        <p:column headerText="名称" style="width: 125px">
+                            <p:cellEditor> 
+                                <f:facet name="output">
+                                    <h:outputText value="#{g.name}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{g.name}" required="true"  requiredMessage="名称不能为空"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="成绩" style="width: 75px">
+                            <p:cellEditor> 
+                                <f:facet name="output">
+                                    <h:outputText value="#{g.grade}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{g.grade}" required="true"  requiredMessage="成绩不能为空"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="评语内容">
+                            <p:cellEditor> 
+                                <f:facet name="output">
+                                    <h:outputText value="#{g.comment}" style="width: 100%"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputTextarea  value="#{g.comment}" required="true"  requiredMessage="评语内容不能为空" style="width: 100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column  headerText="编辑" style="width:40px">
+                            <p:rowEditor /> 
+                        </p:column>
+                        <p:column  headerText="删除" style="width:75px">
+                            <p:commandButton value="删除" actionListener="#{classPlanView.removeGrade(g)}" update=":form:gradeList">
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:overlayPanel>
+            </h:form>
+            <h:form>
+                <p:dialog header="添加评语" widgetVar="dialog">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="名称"/>
+                        <p:inputText value="#{classPlanView.grade.name}" required="true" requiredMessage="名称不能为空"/>
+                        <p:outputLabel value="成绩"/>
+                        <p:inputText value="#{classPlanView.grade.grade}" required="true" requiredMessage="成绩不能为空"/>
+                        <p:outputLabel value="评语内容"/>
+                        <p:inputText value="#{classPlanView.grade.comment}" required="true" requiredMessage="评语内容为空"/>
+                        <p:commandButton actionListener="#{classPlanView.addGrade()}"  value="添加"  update=":form:gradeList"  oncomplete="PF('diallog').hide()"/>
+                    </h:panelGrid>
+                </p:dialog>
+            </h:form>
+              <h:form id="level1form">
+                    <p:dialog id="dialog"  widgetVar="scheduleDialog" header="#{scheduleView.course.name}的个人进度表" modal="true">
+                    <center>
+                        <h:panelGrid columns="1">
+                            <p:schedule id="schedule1"   value="#{scheduleView.eventModel}" widgetVar="myAMschedule" timeZone="GMT+8"
+                                        leftHeaderTemplate="prev,next" rightHeaderTemplate="today"  style="width: 1000px"
+                                        resizable="false" draggable="false"  view="basicWeek" aspectRatio="6"  initialDate="#{scheduleView.startDate}" >
+                                <p:ajax event="dateSelect" listener="#{scheduleView.onAMDateSelect}" update="messages"/>
+                                <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}"  update="messages"/>
+                            </p:schedule>
+                            <p:messages id="messages" showDetail="true"  closable="true" showIcon="false"/>                  
+                            <!--下面的按钮隐藏了-->
+                            <p:commandButton id="showLevel2btn1" actionListener="#{scheduleView.showAMDig3()}" value="showDig"  style="display: none" >
+                                <p:ajax event="dialogReturn" listener="#{scheduleView.onCourseReturn}" update="messages" oncomplete="PF('myAMschedule').update()"/>
+                            </p:commandButton>
+                            <!--下面的按钮隐藏了-->                     
+                            <p:commandButton id="showEndDateBtn1" actionListener="#{scheduleView.showAMDialogEndDate3()}" value="showDialogEndDate"  style="display: none" >
+                                <p:ajax event="dialogReturn" listener="#{scheduleView.onCourseReturn}" update="messages" oncomplete="PF('myAMschedule').update()"/>
+                            </p:commandButton>
+                        </h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <p:schedule id="schedule2"   value="#{scheduleView.pmEventModel}" widgetVar="myPMschedule" timeZone="GMT+8"
+                                        leftHeaderTemplate="prev,next" rightHeaderTemplate="today"  style="width: 1000px"
+                                        resizable="false" draggable="false"  view="basicWeek" aspectRatio="6"  initialDate="#{scheduleView.startDate}" >
+                                <p:ajax event="dateSelect" listener="#{scheduleView.onPMDateSelect}" update="messages2"/>
+                                <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}"  update="messages2"/>
+                            </p:schedule>
+                            <p:messages id="messages2" showDetail="true"  closable="true" showIcon="false"/>                  
+                            <!--下面的按钮隐藏了-->
+                            <p:commandButton id="showLevel2btn2" actionListener="#{scheduleView.showPMDig3()}" value="showDig"  style="display: none" >
+                                <p:ajax event="dialogReturn" listener="#{scheduleView.onCourseReturn}" update="messages2" oncomplete="PF('myPMschedule').update()"/>
+                            </p:commandButton>
+                            <!--下面的按钮隐藏了-->                     
+                            <p:commandButton id="showEndDateBtn2" actionListener="#{scheduleView.showPMDialogEndDate3()}" value="showDialogEndDate"  style="display: none" >
+                                <p:ajax event="dialogReturn" listener="#{scheduleView.onCourseReturn}" update="messages2" oncomplete="PF('myPMschedule').update()"/>
+                            </p:commandButton>
+                        </h:panelGrid>
+                    </center>       
+                </p:dialog>
+                      </h:form>
+        </center>
+    </h:body>
+</html>

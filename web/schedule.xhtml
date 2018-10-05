@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>#{scheduleView.student.id}__#{scheduleView.student.name}的项目进度表</title>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <h:form id="level1form">
+            <center>
+                <h:panelGrid columns="1">
+                    <p:schedule id="schedule"   value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+8"
+                                leftHeaderTemplate="prev,next" rightHeaderTemplate="today"  style="width: 600px"
+                                resizable="false" draggable="false"  view="basicWeek" aspectRatio="6"  initialDate="#{scheduleView.startDate}" >
+                        <p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="messages"/>
+                        <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}"  update="messages"/>
+                    </p:schedule>
+                    <p:messages id="messages" showDetail="true"  closable="true" showIcon="false"/>
+                    <!--下面的按钮隐藏了-->
+                    <p:commandButton id="showLevel2btn" actionListener="#{scheduleView.showDig()}" value="hideDialog"  style="display: none" >
+                        <p:ajax event="dialogReturn" listener="#{scheduleView.onReturn}" update="messages" oncomplete="PF('myschedule').update()"/>
+                    </p:commandButton>
+                    <p:commandButton id="closeLevel1btn" value="关闭" actionListener="#{scheduleView.closeDig()}" style="display: none"/>
+                </h:panelGrid>
+            </center>
+        </h:form>
+    </h:body>
+</html>
+

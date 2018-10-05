@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>学生信息数据上传</title>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <h:form id="form"  enctype="multipart/form-data">
+            <p:fileUpload 
+                fileUploadListener="#{classPlanView.uploadStudentsInfo}" 
+                cancelLabel="取消"
+                uploadLabel="上传"
+                label="选择"
+                mode="advanced"
+                dragDropSupport="true"
+                sizeLimit="1000000"  
+                fileLimit="1" 
+                allowTypes="/(\.|\/)(xlsx)$/"  />
+        </h:form>
+        <h:form >
+            <p:commandLink id="imageLink" value="点击查看xlsx文件要求" type="button" />
+            <p:overlayPanel id="imagePanel" for="imageLink" hideEffect="fade">
+                <p:graphicImage value="/images/xlsxFormat.png" />
+            </p:overlayPanel>
+        </h:form>
+    </h:body>
+</html>

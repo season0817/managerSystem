@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>学生课程设计项目管理系统</title>
+                <style type="text/css">
+                    .ui-datatable-header {
+                        text-align: right !important;
+                    }
+                </style>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form id="form">  
+                <p:defaultCommand target=":form:refreshBtn" />
+
+
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:button outcome="manager_welcome"  value="学生信息" disabled="false"  > </p:button>
+                        <!--
+                        <p:button outcome="manager_projectInfo"  value="项目信息" disabled="false" ></p:button>
+                        -->
+                        <p:commandButton id="refreshBtn" action="manager_managerInfo"   value="管理员信息" disabled="true"/>   
+                        <p:commandButton action="class_plan"   value="课程设置中心"  ajax="false"/>
+                    </f:facet>
+                    <f:facet name="right">    
+                        <p:menuButton value="管理员：#{managedBean.managerName}" >
+                            <p:menuitem value="登出"  action="#{managedBean.logout()}"  icon="ui-icon-extlink"  />
+                        </p:menuButton>
+                    </f:facet>
+                </p:toolbar>
+                <p:dialog id="dig" header="AddManager" widgetVar="addManagerDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                    <h:panelGrid  columns="2" cellpadding="4" >  
+                        <h:outputText value="ID:" />  
+                        <h:inputText value="#{dengJSFManagedBean.manager_id}" style="font-weight:bold"/>  
+                        <h:outputText value="姓名:" />  
+                        <h:inputText value="#{dengJSFManagedBean.manager_name}" style="font-weight:bold"/> 
+                        <h:outputText value=" 密码:" />  
+                        <h:inputSecret value="#{dengJSFManagedBean.manager_password}" style="font-weight:bold"/> 
+                        <p:commandButton value="添加" action="#{dengJSFManagedBean.addManager()}" ajax="false" ></p:commandButton>
+                    </h:panelGrid>  
+                </p:dialog>
+                <h1 style="text-align: center">管理员信息</h1>
+                <p:growl id="growl" />
+                <center>
+                    <p:dataTable id="managerTable" value="#{dengJSFManagedBean.managers}" var="item" editable="true" widgetVar="managersTable"
+                                 emptyMessage="No managers found with given criteria" filteredValue="#{dengJSFManagedBean.filterManagers}"
+                                 style="width: 600px">
+                        <p:ajax event="rowEdit" listener="#{dengJSFManagedBean.onEdit}" update=":form:growl" />  
+                        <p:ajax event="rowEditCancel" listener="#{dengJSFManagedBean.onCancel}"  update=":form:growl"/>  
+
+                        <f:facet name="header" class=".ui-datatable-header" >
+                            <p:outputLabel value="管理员信息" style="float:left"/>
+                            <p:commandButton   value="刷新" actionListener="#{dengJSFManagedBean.updateDate()}" update=":form:managerTable" />
+                            <p:commandButton   value="添加管理员" oncomplete="PF('addManagerDialog').show()" />
+                        </f:facet>
+
+                        <p:column headerText="ID" style="width:25%" filterBy="#{item.id}" filterMatchMode="contains"> 
+                            <center><h:outputText value="#{item.id}"/></center>
+                        </p:column>
+
+                        <p:column headerText="姓名" style="width:25%">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <center><h:outputText value="#{item.name}"/></center>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <center><p:inputText value="#{item.name}" required="true" requiredMessage="姓名不能为空" style="width:100% "/></center>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="密码" style="width:30%">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <center><h:outputText value="#{item.password}"/></center>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <center><p:inputText value="#{item.password}"  required="true" requiredMessage="密码不能为空" style="width:100% "/></center>
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column  headerText="编辑" style="width:40px">
+                            <p:rowEditor />  
+                        </p:column>
+                        <p:column  headerText="删除" style="width:75px">  
+                            <p:commandButton value="删除" action="#{dengJSFManagedBean.removeManager}" update="managerTable,:form:growl" >
+                                <f:setPropertyActionListener value="#{item.id}" target="#{dengJSFManagedBean.selectedManager}" />  
+                                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        </p:column>  
+                    </p:dataTable>
+                </center>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+            </h:form> 
+        </h:body>
+    </f:view>
+</html>
+
+
+

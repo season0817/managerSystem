@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <title>Login</title>
+        <style> 
+            body
+            {
+                width:99%;
+                heigh:100%;
+            }      
+            .button
+            {
+                background-color:#008080; /* 墨绿色 */
+                color:white;
+                border:0px;
+                width:240px;
+                border-radius: 4px;
+                padding:5px 5px;
+                text-align:center;
+                font-size:16px;
+                -webkit-transition-duration: 0.2s;
+                transition-duration: 0.2s;
+            }
+            .button1:hover 
+            {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .content
+            {
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.3);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
+                text-align:center;
+                padding:30px;
+                margin:200px 0 0 0;
+                box-sizing: border-box;
+            } 
+        </style>
+    </h:head>
+    <h:body>
+
+        <div class="content">
+            <h:form>  
+                <center>
+                     <p:outputLabel value="学生" style="width:240px;font-size:25px;"></p:outputLabel>
+                    <table border="2"  cellpadding="10" >
+                        <tbody>
+                            <tr>
+                                <td><p:outputLabel value="学号"></p:outputLabel></td>
+                                <td><p:inputText value="#{managedBean.studentId}"></p:inputText></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel value="姓名"></p:outputLabel>  </td>
+                                <td><p:inputText value="#{managedBean.studentName}"></p:inputText></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <p:commandButton class="button button1" value="登陆" action="#{managedBean.studentLogin}" ></p:commandButton>
+                    <p:commandButton class="button button1" value="返回" action="index" ></p:commandButton>
+
+                </center>
+            </h:form> 
+        </div>
+        <f:view>
+
+
+            <!--            <h:form>
+                            <h1><h:outputText value="List"/></h1>
+                            <h:dataTable value="#{managedBean.students}" var="item">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Name"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.name}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>-->
+        </f:view>
+
+    </h:body>
+</html>
+
